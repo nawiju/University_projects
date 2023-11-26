@@ -1,5 +1,7 @@
-Macchiato Lungo - Macchiato language debugger
+## Macchiato Lungo - Macchiato language debugger
+
 Language: Java
+
 Class: Programowanie Obiektowe (Object-Oriented Programming)
 
 This project implements classes that represent a set of instruction of a simple programming language called Macchiato. The programs in Macchiato consist of a single block, and the goal is to execute these programs, along with providing a debugging feature. One can run the program in two modes: 

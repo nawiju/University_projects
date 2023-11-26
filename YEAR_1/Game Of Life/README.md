@@ -1,5 +1,7 @@
-Game of Life Simulator
+## Game of Life Simulator
+
 Language: C
+
 Class: Wstęp do programowania (Introduction to programming)
 
 John Conway's Game of Life is a cellular automaton, simulating a world of cells. The simulation takes place on a board consisting of infinitely many rows and columns. Rows and columns of the board are numbered with integers. Each cell on the board is in one of two states: alive or dead. The total state of all cells is called a generation. We assume that a cell in row i and column j is adjacent to eight other cells on the board, with row numbers ranging from i - 1 to i + 1 and column numbers ranging from j - 1 to j + 1. In the next generation, a cell will be alive if and only if: in the current generation, it is alive and has exactly two or three live neighbors, or in the current generation, it is dead and has exactly three live neighbors.

@@ -1,5 +1,7 @@
-Sequences Library
+## Sequences Library
+
 Language: C
+
 Class: Architektura komputerów i systemy operacyjne (Computer architecture and operating systems)
 
 This is an implementation of a dynamically loaded C library that handles sets of sequences with an equivalence relation. Sequences are represented as non-empty strings of numbers 0, 1, and 2. The library provides functions to create, delete, add, remove, and check the validity of sequences in a set. Additionally, the library allows setting or changing the name of an abstraction class to which a sequence belongs, getting the name of the abstraction class, and combining two equivalence classes into one.

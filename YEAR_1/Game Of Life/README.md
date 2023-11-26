@@ -10,7 +10,11 @@ The program's input consists of the description of the initial generation and a 
 
 The program recognizes the following commands:
 Quit the program: .
+
 Calculate the N'th generation: N
+
 Calculate the next generation: [empty line]
+
 Show the state of the current generation: 0
+
 Shift the window (ie. the fragment of the board currently shown to the user): w k

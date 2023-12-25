@@ -4,6 +4,7 @@ Language: Java
 Class: Programowanie współbieżne (Concurrent Programming)
 
 Template provided by prof. Konrad Iwanicki
+
 My work can be found in the folder 'solution'
 
 Task description: https://www.mimuw.edu.pl/~iwanicki/courses/cp/2023/ 

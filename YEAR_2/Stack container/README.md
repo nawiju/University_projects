@@ -1,5 +1,9 @@
 ## Stack Container Implementation
 
+# Language: C++
+
+# Class: Kurs programowania w C++ (Programming in C++)
+
 This assignment focuses on implementing a container template that behaves like a stack, where each element consists of a key and a value. It provides methods of a standard stack such as pop(), front() and push(element), but also provides additional methods such as:
 
 void pop(K const &); - Removes the last added element with the given key

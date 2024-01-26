@@ -17,4 +17,3 @@ It also allows the user to access the structure using an iterator that satisfies
 
 The stack class should be exception-transparent, meaning it should propagate any exceptions thrown by the functions it calls and operations on its members. The observable state of the object should not change if modifying operations fail, particularly, they should not invalidate iterators.
 
-Note: I wrote this project together with Dawid Pawlik.

@@ -1,0 +1,4 @@
+bus_project_NJ.egg-info/
+__pycache__/
+.vscode/
+.pytest_cache/

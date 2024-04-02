@@ -1,19 +1,190 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SVG Image List</title>
-</head>
-<body>
-    <a href="{% url 'admin:index' %}">Admin Login</a>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Image list</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <style>
+            .pagination {
+                text-align: center;
+                margin-top: 20px;
+            }
 
-    <h1>SVG Image List</h1>
+            .pagination a {
+                display: inline-block; 
+                padding: 8px 16px;
+                text-decoration: none; 
+                border: 1px solid #306BAC; 
+                color: #306BAC; 
+                margin: 0 5px;
+                border-radius: 5px;
+            }
+
+            .pagination a:hover {
+                background-color: #306BAC;
+                color: white;
+            }
+
+            .current {
+                display: inline-block; 
+                padding: 8px 16px;
+                background-color: #306BAC; 
+                color: white;
+                border: 1px solid #306BAC;  
+                margin: 0 5px; 
+                border-radius: 5px;
+            }
+
+            .navbar-fixed-top {
+                position: fixed;
+                top: 0;
+                width: 100%;
+                z-index: 1000;
+            }
+        </style>
+    </head>
+    <body style="background-color: #B6CEF6;">
+        <!-- <nav class="navbar-fixed-top">
+            <span><a href="{% url 'admin:index' %}">Admin Login</a></span>
+        <span>
+            <form method="post">
+                {% csrf_token %}
+                <label for="tag">Tag:</label>
+                <input type="text" name="tag_name"><br>
+                <button type="submit" name="searched_tag">Search</button>
+            </form>
+        </span>
+        <span>
+            <form method="post">
+                {% csrf_token %}
+                <select name="filter">
+                    <option value="nto">By publishing date: new to old</option>
+                    <option value="otn">By publishing date: old to new</option>
+                </select>
+                <button type="submit" name="filter_button">Filter</button>
+            </form>
+        </span>
+    </nav> -->
+        <nav class="navbar-fixed-top navbar navbar-expand-lg navbar-light pt-3" style="background-color: #306BAC;">
+            <div class="container">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item mr-4">
+                        <a class="btn btn-link nav-link" style="background-color: #141B41; color: white; font-weight: bold;" href="{% url 'admin:index' %}">Admin Login</a>
+                    </li>
+                    <form class="form-inline mr-4" method="post">
+                        {% csrf_token %}
+                        <label class="mr-sm-2" for="tag" style="font-weight: bold;">Filter by tag:</label>
+                        <input
+                            type="text"
+                            class="form-control mr-sm-2"
+                            name="tag_name"
+                            style="background-color: #6F9CEB; color: white; border-color: #6F9CEB;"
+                        >
+                        <button
+                            type="submit"
+                            class="btn btn-primary"
+                            name="searched_tag"
+                            style="background-color: #141B41; font-weight: bold;"
+                        >Search</button>
+                    </form>
+                    <form class="form-inline mr-2" method="post">
+                        {% csrf_token %}
+                        <label class="mr-sm-2" for="tag" style="font-weight: bold;">Filter by date published:</label>
+                        <select class="form-control mr-sm-2" name="filter" style="background-color: #6F9CEB; color: white; border-color: #6F9CEB;">
+                            <option value="nto">New to old</option>
+                            <option value="otn">Old to new</option>
+                        </select>
+                        <button
+                            type="submit"
+                            class="btn btn-primary"
+                            name="filter_button"
+                            style="background-color: #141B41; color: white; font-weight: bold;"
+                        >Filter</button>
+                    </form>
+                </ul>
+            </div>
+        </nav>
+        <div class="container" style="padding-top: 120px;">
+            <div class="row">
+                {% for image, rectangle_list in page_obj %}
+                <div class="col-md-3 mb-4">
+                    <div class="card" style="background-color: #6F9CEB; color: white; border-color: #6F9CEB;">
+                        <div class="card-body text-center">
+                            <a href="{% url 'view_svg' image.id %}">
+                                <svg height="100" width="100">
+                                    {% for rectangle in rectangle_list %}
+                                    <rect
+                                        x="{{ rectangle.x }}"
+                                        y="{{ rectangle.y }}"
+                                        width="{{ rectangle.width }}"
+                                        height="{{ rectangle.height }}"
+                                        fill="{{ rectangle.color }}"
+                                    />
+                                    {% endfor %}
+                                </svg>
+                            </a>
+                            <a href="{% url 'view_svg' image.id %}" style="font-weight: bold; color: white;">
+                                <h5 class="card-title mt-3">{{ image.title }}</h5>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <!-- 
+    <h1>Image List</h1>
     <ul>
-        {% for image in images %}
-        <li>
-            <a href="{% url 'view_svg' image.id %}">Image {{ image.id }} : {{ image.title }}</a>
-        </li>
+        {% for image, rectangle_list in page_obj %}
+        <span>
+            <a href="{% url 'view_svg' image.id %}">
+                <svg height="100" width="100">
+                    {% for rectangle in rectangle_list %}
+                    <rect x="{{ rectangle.x }}" y="{{ rectangle.y }}" width="{{ rectangle.width }}" height="{{ rectangle.height }}" fill="{{ rectangle.color }}" />
+                    {% endfor %}
+                </svg>
+            </a>
+        </span>
         {% endfor %}
-    </ul>
-</body>
+    </ul> -->
+        <!-- 
+    {% if page_obj.has_other_pages %}
+        <div class="pagination"></div>
+            {% if page_obj.has_previous %}
+                <a href="?page=1">First</a>
+                <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+            {% endif %}
+            
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+            
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">Next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+            {% endif %}
+        </div>
+    {% endif %} -->
+        {% if page_obj.has_other_pages %}
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-12 d-flex justify-content-center">
+                    <div class="pagination">
+                        {% if page_obj.has_previous %}
+                        <a href="?page=1">First</a>
+                        <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                        {% endif %}
+                        <span class="current">
+                            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                        </span>
+                        {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}">Next</a>
+                        <a href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </body>
 </html>

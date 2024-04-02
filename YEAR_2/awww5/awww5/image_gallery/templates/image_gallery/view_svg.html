@@ -6,30 +6,33 @@
     <title>{{ image.title }}</title>
 </head>
 <body>
-    <h1>{{ image.title }}</h1>
+    <a href="{% url 'index' %}">Back to Image List</a>
+
+    <h1 >{{ image.title }}</h1>
     <svg width="{{ image.width }}" height="{{ image.height }}" viewBox="0 0 {{ image.width }} {{ image.height }}">
         {% for rectangle in rectangles %}
             <rect x="{{ rectangle.x }}" y="{{ rectangle.y }}" width="{{ rectangle.width }}" height="{{ rectangle.height }}" fill="{{ rectangle.color }}" />
         {% endfor %}
     </svg>
+    
+    <p> Published: {{ image.publication_date }}</p>
+
+    {% if image.description %}
+        <p> Description: {{ image.description }}</p>
+    {% else %}
+        <p></p>
+    {% endif %}
+
+    {% if tags %}
+        <span> Tags: </span>
+        {% for tag in tags %}
+            <span>{{ tag.name }}</span>
+        {% endfor %}
+    {% endif %}
+
     {% if is_staff %}
-    <h2>Dodaj se prostokącik uwu uwu</h2>
-    <form method="post">
-        {% csrf_token %}
-        <label for="x">X:</label>
-        <input type="number" name="x" required><br>
-        <label for="y">Y:</label>
-        <input type="number" name="y" required><br>
-        <label for="width">Width:</label>
-        <input type="number" name="width" required><br>
-        <label for="height">Height:</label>
-        <input type="number" name="height" required><br>
-        <label for="color">Color:</label>
-        <input type="text" name="color" required><br>
-        <button type="submit">Done</button>
-    </form>
     <br>
-    <h2>Prostokąciki</h2>
+    <h2>Rectangles</h2>
     <table>
         <thead>
             <tr>
@@ -58,6 +61,36 @@
             {% endfor %}
         </tbody>
     </table>
+    <br>
+    <h2>Add a rectangle</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label for="x">X:</label>
+        <input type="number" name="x" required><br>
+        <label for="y">Y:</label>
+        <input type="number" name="y" required><br>
+        <label for="width">Width:</label>
+        <input type="number" name="width" required><br>
+        <label for="height">Height:</label>
+        <input type="number" name="height" required><br>
+        <label for="color">Color:</label>
+        <input type="text" name="color" required><br>
+        <button type="submit">Done</button>
+    </form>
+    <br>
+    <form method="post">
+        {% csrf_token %}
+        <label for="description">Description:</label>
+        <input type="text" name="description" value="{{ image.description }}"><br>
+        <button type="submit" name="update_description">Update Description</button>
+    </form>
+    <br>
+    <form method="post">
+        {% csrf_token %}
+        <label for="tag">Tag:</label>
+        <input type="text" name="tag_name" required><br>
+        <button type="submit" name="add_tag">Add Tag</button>
+    </form>
     {% endif %}
 </body>
 </html>

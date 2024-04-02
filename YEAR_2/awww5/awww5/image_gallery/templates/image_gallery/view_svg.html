@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ image.title }}</title>
+</head>
+<body>
+    <h1>{{ image.title }}</h1>
+    <svg width="{{ image.width }}" height="{{ image.height }}" viewBox="0 0 {{ image.width }} {{ image.height }}">
+        {% for rectangle in rectangles %}
+            <rect x="{{ rectangle.x }}" y="{{ rectangle.y }}" width="{{ rectangle.width }}" height="{{ rectangle.height }}" fill="{{ rectangle.color }}" />
+        {% endfor %}
+    </svg>
+    {% if is_staff %}
+    <h2>Dodaj se prostokącik uwu uwu</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label for="x">X:</label>
+        <input type="number" name="x" required><br>
+        <label for="y">Y:</label>
+        <input type="number" name="y" required><br>
+        <label for="width">Width:</label>
+        <input type="number" name="width" required><br>
+        <label for="height">Height:</label>
+        <input type="number" name="height" required><br>
+        <label for="color">Color:</label>
+        <input type="text" name="color" required><br>
+        <button type="submit">Done</button>
+    </form>
+    <br>
+    <h2>Prostokąciki</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>X</th>
+                <th>Y</th>
+                <th>Width</th>
+                <th>Height</th>
+                <th>Color</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for rectangle in rectangles %}
+                <tr>
+                    <td>{{ rectangle.x }}</td>
+                    <td>{{ rectangle.y }}</td>
+                    <td>{{ rectangle.width }}</td>
+                    <td>{{ rectangle.height }}</td>
+                    <td>{{ rectangle.color }}</td>
+                    <td>
+                        <form method="post">
+                            {% csrf_token %}
+                            <button type="submit" name="delete_rectangle" value="{{ rectangle.id }}">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+</body>
+</html>

@@ -21,6 +21,14 @@ def index(request):
                 return render(request, 'image_gallery/image_list.html', {'page_obj': page_obj})
             
             tag = Tag.objects.filter(name=tag_name).first()
+            
+            if tag is None:
+                images = []
+                images_rectangles = []
+                paginator = Paginator(images_rectangles, MAX_PAGE_SIZE)
+                page_obj = paginator.get_page(page_number)
+                return render(request, 'image_gallery/image_list.html', {'page_obj': page_obj})
+            
             images = tag.images.all()
             images_rectangles = [(image, image.rectangles.all()) for image in images]
             paginator = Paginator(images_rectangles, MAX_PAGE_SIZE)  

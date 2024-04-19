@@ -58,7 +58,7 @@ async def get_images():
     Retrieve all images with their associated tags.
     
     Example request:
-        url -X 'GET'  'http://0.0.0.0:8000/images' -H 'accept: application/json'
+        curl -X 'GET'  'http://0.0.0.0:8000/images' -H 'accept: application/json'
 
     Returns:
         List[dict]: A list of images with their associated tags.
@@ -101,7 +101,7 @@ async def get_images_by_tag(tag: str):
         tag (str): The tag to filter images by.
         
     Example request:
-        'url -X 'GET'  'http://0.0.0.0:8000/images/listerine' -H 'accept: application/json'
+        curl -X 'GET'  'http://0.0.0.0:8000/images/listerine' -H 'accept: application/json'
 
 
     Returns:

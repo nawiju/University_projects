@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from .models import SVGImage, Rectangle, Tag
+from .models import SVGImage, Rectangle, Tag, User
 from django.core.paginator import Paginator
 
 MAX_PAGE_SIZE = 12
@@ -65,7 +65,17 @@ def view_svg(request, image_id):
     image = SVGImage.objects.get(id=image_id)
     rectangles = image.rectangles.all()
     tags = image.tags.all()
-    is_staff = request.user.is_staff
+    editors = image.editors.all()
+    
+    is_admin = request.user.is_superuser
+    
+    is_staff = False
+    if request.user in editors and request.user.is_staff:
+        is_staff = True
+    elif is_admin:
+        is_staff = True
+    else:
+        is_staff = False
     
     if request.method == 'POST' and is_staff:
         if 'delete_rectangle' in request.POST:
@@ -90,6 +100,12 @@ def view_svg(request, image_id):
             image.save()
             return redirect('view_svg', image_id=image_id)
         
+        if 'remove_editor' in request.POST:
+            editor_id = request.POST.get('remove_editor')
+            editor = User.objects.get(pk=editor_id)
+            image.remove_editor(editor)
+            return redirect('view_svg', image_id=image_id)
+        
         x = request.POST.get('x')
         y = request.POST.get('y')
         width = request.POST.get('width')
@@ -101,4 +117,4 @@ def view_svg(request, image_id):
 
         return redirect('view_svg', image_id=image_id)
     
-    return render(request, 'image_gallery/view_svg.html', {'image': image, 'rectangles': rectangles, 'is_staff': is_staff, 'tags': tags})
+    return render(request, 'image_gallery/view_svg.html', {'image': image, 'rectangles': rectangles, 'is_staff': is_staff, 'tags': tags, 'is_admin': is_admin, 'editors': editors})

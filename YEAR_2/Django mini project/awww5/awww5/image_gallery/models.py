@@ -12,6 +12,9 @@ class SVGImage(models.Model):
     def __str__(self):
         return self.title
     
+    def remove_editor(self, user):
+        self.editors.remove(user)
+    
 class Rectangle(models.Model):
     image = models.ForeignKey(SVGImage, on_delete=models.CASCADE, related_name='rectangles')
     x = models.IntegerField(default=0)

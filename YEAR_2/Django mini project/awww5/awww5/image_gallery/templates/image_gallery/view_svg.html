@@ -92,5 +92,16 @@
         <button type="submit" name="add_tag">Add Tag</button>
     </form>
     {% endif %}
+
+    {% if is_admin %}
+        <br>
+        <h2>Admin Actions</h2>
+        <form method="post">
+            {% csrf_token %}
+            {% for editor in editors %}
+                <button type="submit" name="remove_editor" value="{{ editor.id }}">Remove {{ editor.username }}</button>
+            {% endfor %}
+        </form>
+    {% endif %}
 </body>
 </html>

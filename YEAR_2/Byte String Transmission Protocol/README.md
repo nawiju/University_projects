@@ -1,6 +1,6 @@
 # Byte Stream Transmission Protocol (BSTP)
 
-Welcome to the Byte Stream Transmission Protocol (BSTP) repository! This project implements a protocol for transmitting byte streams between clients and servers over TCP or UDP connections. The protocol includes provisions for connection establishment, data transmission, and termination, with support for both reliable (TCP) and unreliable (UDP) communication.
+This project implements a protocol for transmitting byte streams between clients and servers over TCP or UDP connections. The protocol includes provisions for connection establishment, data transmission, and termination, with support for both reliable (TCP) and unreliable (UDP) communication.
 
 ## Overview
 

@@ -1,4 +1,5 @@
 # Hearts Game - Server and Client
+Class: Computer Networks
 
 The goal of this task is to implement a server and client for the game of Hearts. The server conducts the game, while the clients represent the players.
 

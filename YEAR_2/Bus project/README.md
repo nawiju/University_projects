@@ -1,4 +1,5 @@
 # Python module for the analysis of public busses in Warsaw, Poland
+Class: Python course
 
 A Python module that analyzes publicly available data on public busses in Warsaw, Poland. The data is available at the [Warsaw Public Transport Authority](https://api.um.warszawa.pl/). The project's goals are to: (1) visualize where the busses exceed the speed of 50 km/h, (2) analyze the punctuality of the busses as well as evaluate in which districts do the busses tends to be late, and (3) analyze whether there is a correlation between busses exceeding the speed of 50 km/h and them speeding in the vicinity of theaters.
 

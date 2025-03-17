@@ -9,6 +9,7 @@ John Conway's Game of Life is a cellular automaton, simulating a world of cells.
 The program's input consists of the description of the initial generation and a sequence of commands. The generation description indicates live cells. It takes the form of a sequence of rows starting with the '/' (slash) character. In the last row of the generation description, there is only the '/' character. In all other rows after the '/' character, there is an integer, the row number of the board. Following it is an ascending sequence of non-empty integers, which are column numbers. Each of these numbers is preceded by a space. 
 
 The program recognizes the following commands:
+
 Quit the program: .
 
 Calculate the N'th generation: N

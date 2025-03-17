@@ -8,14 +8,14 @@ This is an implementation of a dynamically loaded C library that handles sets of
 
 The interface of the library is as follows:
     typedef struct seq seq_t;
-    seq_t *seq_new(void); // Creates a new empty set of sequences.
-    void seq_delete(seq_t *p); // Deletes a set of sequences and frees associated memory.
-    int seq_add(seq_t *p, char const *s); // Adds a sequence and all non-empty prefixes of it to the set.
-    int seq_remove(seq_t *p, char const *s); // Removes a sequence and all sequences for which it is a prefix from the set.
-    int seq_valid(seq_t *p, char const *s); // Checks if a given sequence belongs to the set of sequences.
-    int seq_set_name(seq_t *p, char const *s, char const *n); // Sets or changes the name of the abstraction class for a given sequence.
-    char const *seq_get_name(seq_t *p, char const *s); // Gets the name of the abstraction class for a given sequence.
-    int seq_equiv(seq_t *p, char const *s1, char const *s2); // Combines two abstraction classes into one.
+    seq_t *seq_new(void); // Creates a new empty set of sequences. \\
+    void seq_delete(seq_t *p); // Deletes a set of sequences and frees associated memory. \\
+    int seq_add(seq_t *p, char const *s); // Adds a sequence and all non-empty prefixes of it to the set. \\
+    int seq_remove(seq_t *p, char const *s); // Removes a sequence and all sequences for which it is a prefix from the set. \\
+    int seq_valid(seq_t *p, char const *s); // Checks if a given sequence belongs to the set of sequences. \\ 
+    int seq_set_name(seq_t *p, char const *s, char const *n); // Sets or changes the name of the abstraction class for a given sequence. \\
+    char const *seq_get_name(seq_t *p, char const *s); // Gets the name of the abstraction class for a given sequence. \\
+    int seq_equiv(seq_t *p, char const *s1, char const *s2); // Combines two abstraction classes into one. \\
 
 The library handles errors such as invalid parameters and memory allocation failures.
 
